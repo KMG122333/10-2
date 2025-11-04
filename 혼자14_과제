@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+
+double calculate_average(long long sum, int count);
+
+int main() {
+    
+    const int ROWS = 3;
+    const int COLS = 4;
+    const int TOTAL_COUNT = ROWS * COLS;
+
+  
+    int animal_scores[ROWS][COLS] = {
+        {88, 90, 91, 74},
+        {71, 82, 84, 72},
+        {63, 75, 26, 17}
+    };
+    
+
+    int human_scores[ROWS][COLS] = {
+        {88, 70, 17, 95},
+        {99, 91, 82, 73},
+        {62, 84, 82, 74}
+    };
+
+    long long animal_sum = 0;
+    long long human_sum = 0;
+    
+  
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            animal_sum += animal_scores[i][j];
+            human_sum += human_scores[i][j];
+        }
+    }
+    
+   
+    double animal_avg = calculate_average(animal_sum, TOTAL_COUNT);
+    double human_avg = calculate_average(human_sum, TOTAL_COUNT);
+
+  
+    printf("동물반 점수 총합: %lld - 평균: %.2f\n", animal_sum, animal_avg);
+    printf("사람반 점수 총합: %lld - 평균: %.2f\n", human_sum, human_avg);
+    
+    if (human_sum > animal_sum) {
+        printf("사람반의 점수 총합이 더 높습니다.\n");
+    } else if (animal_sum > human_sum) {
+        printf("동물반의 점수 총합이 더 높습니다.\n");
+    } else {
+        printf("두 반의 점수 총합이 같습니다.\n");
+    }
+
+    return 0;
+}
+
+
+double calculate_average(long long sum, int count) {
+    if (count == 0) {
+        return 0.0;
+    }
+    
+    return (double)sum / count;
+}
